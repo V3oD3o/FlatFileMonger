@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    internal class CharReader : IDisposable
    {

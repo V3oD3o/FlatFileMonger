@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvFormatOptions
    {

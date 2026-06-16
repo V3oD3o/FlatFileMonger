@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public delegate bool CsvDataPreprocessor(DataTable table, CsvRecord data, int index, object state);
    public delegate void CsvDataPostprocessor(DataTable table, DataRow data, object state);
@@ -232,7 +232,7 @@ namespace CodeSource.Text
                break;
 
             case AggregateFunctionEnum.Sum:
-               if (ReferenceEquals(dataType, typeof(int)) || ReferenceEquals(dataType, typeof(decimal)))
+               if (ReferenceEquals(dataType, typeof(int)) || ReferenceEquals(dataType, typeof(long)) || ReferenceEquals(dataType, typeof(decimal)))
                {
                   internalDataType = dataType;
                }
@@ -337,7 +337,9 @@ namespace CodeSource.Text
       {
          DataRow[] rows = table.Select(where);
          foreach (DataRow row in rows)
+         {
             table.Rows.Remove(row);
+         }
          return rows.Length;
       }
 
@@ -412,23 +414,20 @@ namespace CodeSource.Text
 
                case AggregateFunctionEnum.Sum:
                {
-                  DataRow[] rows = ToRowArray(source);
-                  if (rows.Length > 0)
-                  {
-                     dynamic sum = Convert.ChangeType(0, column.DataType);
-                     foreach (DataRow row in rows)
-                     {
-                        if (!row.IsNull(column))
-                        {
-                           sum += row[column];
-                        }
-                     }
-                     return sum;
-                  }
-                  else
-                  {
+                  var rows = ToRowArray(source);
+                  if (rows.Length == 0)
                      return DBNull.Value;
-                  }
+
+                  if (ReferenceEquals(column.DataType, typeof(int)))
+                     return SumGeneric<int, IntAdder>(rows, column);
+
+                  if (ReferenceEquals(column.DataType, typeof(long)))
+                     return SumGeneric<long, LongAdder>(rows, column);
+
+                  if (ReferenceEquals(column.DataType, typeof(decimal)))
+                     return SumGeneric<decimal, DecimalAdder>(rows, column);
+
+                  throw new NotSupportedException($"Unsupported type: {column.DataType}");
                }
 
                default:
@@ -436,6 +435,42 @@ namespace CodeSource.Text
                   throw new NotSupportedException();
                }
             }
+         }
+
+         private interface IAdder<T> where T : struct
+         {
+            T Add(T a, T b);
+         }
+
+         private struct IntAdder : IAdder<int>
+         {
+            public int Add(int a, int b) => a + b;
+         }
+
+         private struct LongAdder : IAdder<long>
+         {
+            public long Add(long a, long b) => a + b;
+         }
+
+         private struct DecimalAdder : IAdder<decimal>
+         {
+            public decimal Add(decimal a, decimal b) => a + b;
+         }
+
+         private static T SumGeneric<T, TAdder>(DataRow[] rows, DataColumn column)
+            where T : struct
+            where TAdder : struct, IAdder<T>
+         {
+            TAdder adder = default;
+            T sum = default;
+
+            foreach (var row in rows)
+            {
+               if (!row.IsNull(column))
+                  sum = adder.Add(sum, (T)row[column]);
+            }
+
+            return sum;
          }
       }
 
@@ -964,7 +999,6 @@ namespace CodeSource.Text
 
          public ColumnRef()
          {
-
          }
 
          public ColumnRef(string tableName, string columnName)

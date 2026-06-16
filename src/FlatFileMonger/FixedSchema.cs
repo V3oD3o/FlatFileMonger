@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public sealed class FixedSchema : IEnumerable<FixedColumn>
    {

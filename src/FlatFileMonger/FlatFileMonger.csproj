@@ -5,7 +5,7 @@
         <Nullable>disable</Nullable>
         
         <AssemblyName>FlatFileMonger</AssemblyName>
-        <RootNamespace>FlatFileMonger</RootNamespace>
+        <RootNamespace>Brx.FlatFileMonger</RootNamespace>
 
         <AssemblyTitle>FlatFileMonger</AssemblyTitle>
         <Description>FlatFileMonger Library</Description>
@@ -19,6 +19,6 @@
         <CLSCompliant>true</CLSCompliant>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         
-        <NoWarn>$(NoWarn);1591</NoWarn>
+        <NoWarn>$(NoWarn);1591;IDE0130</NoWarn>
     </PropertyGroup>
 </Project>

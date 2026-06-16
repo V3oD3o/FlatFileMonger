@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvColumnCollection : IEnumerable<string>
    {

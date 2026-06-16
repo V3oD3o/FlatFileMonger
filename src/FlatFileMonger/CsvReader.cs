@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvReader : IDisposable, IEnumerable<string>, ICsvRecordAccessor
    {

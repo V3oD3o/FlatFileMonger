@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class FixedReader : IDisposable, IEnumerable<string>
    {

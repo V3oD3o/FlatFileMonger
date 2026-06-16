@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvFieldAccessor
    {

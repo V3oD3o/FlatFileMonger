@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvWriter : IDisposable
    {

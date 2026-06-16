@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvFormatException : Exception
    {

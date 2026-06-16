@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    public class CsvSchema
    {

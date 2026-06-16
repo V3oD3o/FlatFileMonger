@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Globalization;
 
-namespace CodeSource.Text
+namespace Brx.FlatFileMonger
 {
    internal class CsvParser : IDisposable
    {

@@ -1,4 +1,4 @@
-﻿namespace CodeSource.Text
+﻿namespace Brx.FlatFileMonger
 {
    public enum NewLineModeEnum
    {
