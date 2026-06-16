@@ -5,15 +5,10 @@ namespace CodeSource.Text
 {
    public class CsvFormatOptions
    {
-      private static string CrLf = null;
-
-      private static string GetCrLf()
-      {
-         return CrLf ??= Ascii.Cr.ToString() + Ascii.Lf.ToString();
-      }
+      private static string CrLf = Ascii.Cr.ToString() + Ascii.Lf.ToString();
 
       public static readonly CsvFormatOptions Default =
-         new()
+         new CsvFormatOptions()
          {
             Encoding = Encoding.ASCII,
             Delimiter = Ascii.Comma,
@@ -49,16 +44,16 @@ namespace CodeSource.Text
             switch (NewLineMode)
             {
                case NewLineModeEnum.CrLf:
-                     return GetCrLf();
+                  return CrLf;
                
                case NewLineModeEnum.Cr:
-                     return Ascii.Cr.ToString();
+                  return Ascii.Cr.ToString();
                
                case NewLineModeEnum.Lf:
-                     return Ascii.Lf.ToString();
+                  return Ascii.Lf.ToString();
 
                default:
-                     return Environment.NewLine;
+                  return Environment.NewLine;
             }
          }
       }

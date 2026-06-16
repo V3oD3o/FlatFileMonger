@@ -5,11 +5,11 @@ namespace CodeSource.Text
 {
    public class CsvTable
    {
-      private List<string[]> _rows;
-      private CsvColumnCollection _columns;
+      private readonly List<string[]> _rows;
+      private readonly List<string[]> _duplicates;
+      private readonly Dictionary<string, string[]> _index;
 
-      private Dictionary<string, string[]> _index;
-      private List<string[]> _duplicates;
+      private CsvColumnCollection _columns;
       private string _keyColumn;
       private int _keyColumnIndex;
 
@@ -162,8 +162,7 @@ namespace CodeSource.Text
 
       public void SaveDuplicates(string outputFile)
       {
-         var writer = new CsvWriter(outputFile);
-         try
+         using (var writer = new CsvWriter(outputFile))
          {
             writer.WriteRecord(_columns.ToArray());
             foreach (string[] row in _duplicates)
@@ -172,10 +171,6 @@ namespace CodeSource.Text
                writer.WriteRecord(_index[key]);
                writer.WriteRecord(row);
             }
-         }
-         finally
-         {
-            writer.Close();
          }
       }
 

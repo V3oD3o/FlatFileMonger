@@ -3,7 +3,6 @@ using System.IO;
 
 namespace CodeSource.Text
 {
-
    internal class CharReader : IDisposable
    {
 
@@ -133,7 +132,7 @@ namespace CodeSource.Text
 
       protected void Dispose(bool disposing)
       {
-         if (disposing && _reader is not null)
+         if (disposing && _reader != null)
          {
             _reader.Close();
          }
@@ -147,7 +146,5 @@ namespace CodeSource.Text
       }
 
       #endregion
-
    }
-
 }

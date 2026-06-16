@@ -570,7 +570,7 @@ namespace CodeSource.Text
 
       protected void Dispose(bool disposing)
       {
-         if (disposing && _input is not null)
+         if (disposing && _input != null)
          {
             _input.Close();
          }
@@ -584,7 +584,5 @@ namespace CodeSource.Text
       }
 
       #endregion
-
    }
-
 }

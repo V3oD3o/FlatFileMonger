@@ -304,6 +304,5 @@ namespace CodeSource.Text
       }
 
       #endregion
-
    }
 }

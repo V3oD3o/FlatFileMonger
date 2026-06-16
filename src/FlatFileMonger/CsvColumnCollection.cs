@@ -5,7 +5,6 @@ namespace CodeSource.Text
 {
    public class CsvColumnCollection : IEnumerable<string>
    {
-
       private readonly List<string> _items;
       private readonly Dictionary<string, int> _map;
       
@@ -161,6 +160,5 @@ namespace CodeSource.Text
       IEnumerator<string> IEnumerable<string>.GetEnumerator() => GetEnumerator();
 
       #endregion
-
    }
 }

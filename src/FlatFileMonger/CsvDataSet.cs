@@ -15,7 +15,6 @@ namespace CodeSource.Text
 
    public class CsvDataSet : DataSet
    {
-
       private readonly Dictionary<string, CsvFormatOptions> _formats;
 
       public CsvDataSet() : base()
@@ -393,51 +392,49 @@ namespace CodeSource.Text
          {
             switch (function)
             {
-
                case AggregateFunctionEnum.None:
+               {
+                  var row = ToSingleRow(source);
+                  if (row is null)
                   {
-                     var row = ToSingleRow(source);
-                     if (row is null)
-                     {
-                        return DBNull.Value;
-                     }
-                     else
-                     {
-                        return row[column];
-                     }
+                     return DBNull.Value;
                   }
+                  else
+                  {
+                     return row[column];
+                  }
+               }
 
                case AggregateFunctionEnum.Count:
-                  {
-                     return ToRowArray(source).Length;
-                  }
+               {
+                  return ToRowArray(source).Length;
+               }
 
                case AggregateFunctionEnum.Sum:
+               {
+                  DataRow[] rows = ToRowArray(source);
+                  if (rows.Length > 0)
                   {
-                     DataRow[] rows = ToRowArray(source);
-                     if (rows.Length > 0)
+                     dynamic sum = Convert.ChangeType(0, column.DataType);
+                     foreach (DataRow row in rows)
                      {
-                        dynamic sum = Convert.ChangeType(0, column.DataType);
-                        foreach (DataRow row in rows)
+                        if (!row.IsNull(column))
                         {
-                           if (!row.IsNull(column))
-                           {
-                              sum += row[column];
-                           }
+                           sum += row[column];
                         }
-                        return sum;
                      }
-                     else
-                     {
-                        return DBNull.Value;
-                     }
+                     return sum;
                   }
+                  else
+                  {
+                     return DBNull.Value;
+                  }
+               }
 
                default:
-                  {
-                     throw new NotSupportedException();
-                  }
-
+               {
+                  throw new NotSupportedException();
+               }
             }
          }
       }
@@ -890,7 +887,7 @@ namespace CodeSource.Text
                      if (preprocessor is null || preprocessor.Invoke(table, rec, input.RecordIndex, state))
                      {
                         var row = table.Rows.Add(buffer);
-                        if (postprocessor is not null)
+                        if (postprocessor != null)
                         {
                            postprocessor.Invoke(table, row, state);
                         }

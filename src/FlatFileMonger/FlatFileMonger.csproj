@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        
+        <AssemblyName>FlatFileMonger</AssemblyName>
+        <RootNamespace>FlatFileMonger</RootNamespace>
+
+        <AssemblyTitle>FlatFileMonger</AssemblyTitle>
+        <Description>FlatFileMonger Library</Description>
+        <Company>N/A</Company>
+        <Product>FlatFileMonger</Product>
+        <Copyright>Copyright (C) Daniel Vargha 2025</Copyright>
+
+        <AssemblyVersion>1.0.0.5</AssemblyVersion>
+
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+        <CLSCompliant>true</CLSCompliant>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+</Project>

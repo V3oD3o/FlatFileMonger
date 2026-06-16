@@ -212,7 +212,7 @@ namespace CodeSource.Text
       {
          get
          {
-            return _lastError is not null;
+            return _lastError != null;
          }
       }
 
@@ -226,7 +226,7 @@ namespace CodeSource.Text
 
       public bool ReadHeader()
       {
-         if (_columns is not null)
+         if (_columns != null)
          {
             // header already read
             return true;
@@ -313,7 +313,7 @@ namespace CodeSource.Text
 
       private bool Resync()
       {
-         if (_lastError is not null)
+         if (_lastError != null)
          {
             _lastError = null;
             do
@@ -524,7 +524,7 @@ namespace CodeSource.Text
 
       protected void Dispose(bool disposing)
       {
-         if (disposing && _parser is not null)
+         if (disposing && _parser != null)
          {
             _parser.Dispose();
          }

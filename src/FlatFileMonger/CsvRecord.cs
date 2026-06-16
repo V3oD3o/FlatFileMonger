@@ -6,7 +6,6 @@ namespace CodeSource.Text
 {
    public class CsvRecord : CsvSchema, ICloneable, IEnumerable<string>, ICsvRecordAccessor
    {
-
       private CsvColumnCollection _columns;
       private string[] _fields;
 
@@ -201,6 +200,5 @@ namespace CodeSource.Text
       }
 
       #endregion
-
    }
 }

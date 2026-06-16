@@ -84,7 +84,7 @@ namespace CodeSource.Text
 
          string line = _reader.ReadLine();
 
-         if (line is not null)
+         if (line != null)
          {
             int pos = 0;
             int width;
