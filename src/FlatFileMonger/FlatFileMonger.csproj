@@ -3,22 +3,29 @@
         <TargetFramework>netstandard2.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>disable</Nullable>
-        
+
         <AssemblyName>FlatFileMonger</AssemblyName>
         <RootNamespace>Brx.FlatFileMonger</RootNamespace>
+        <CLSCompliant>true</CLSCompliant>
 
         <AssemblyTitle>FlatFileMonger</AssemblyTitle>
-        <Description>FlatFileMonger Library</Description>
         <Company>N/A</Company>
         <Product>FlatFileMonger</Product>
-        <Copyright>Copyright (C) Daniel Vargha 2025</Copyright>
-
-        <AssemblyVersion>1.0.0.5</AssemblyVersion>
+        <Copyright>Copyright (C) 2025 Daniel Vargha</Copyright>
 
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <CLSCompliant>true</CLSCompliant>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         
         <NoWarn>$(NoWarn);1591;IDE0130</NoWarn>
+
+        <!-- NuGet metadata -->
+        <PackageId>Brx.FlatFileMonger</PackageId>
+        <Authors>Daniel Vargha</Authors>
+        <Description>A robust CSV and fixed-width file reader/writer with in-memory join and query capabilities</Description>
+        <PackageTags>csv;csv-parser;flat-file;fixed-width;parser;reader;writer;etl</PackageTags>
+        <RepositoryUrl>https://github.com/V3oD3o/FlatFileMonger</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageProjectUrl>https://github.com/V3oD3o/FlatFileMonger</PackageProjectUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 </Project>
