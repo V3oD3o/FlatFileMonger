@@ -23,9 +23,14 @@
         <Authors>Daniel Vargha</Authors>
         <Description>A robust CSV and fixed-width file reader/writer with in-memory join and query capabilities</Description>
         <PackageTags>csv;csv-parser;flat-file;fixed-width;parser;reader;writer;etl</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <RepositoryUrl>https://github.com/V3oD3o/FlatFileMonger</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/V3oD3o/FlatFileMonger</PackageProjectUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath="" />
+        <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
+    </ItemGroup>
 </Project>
