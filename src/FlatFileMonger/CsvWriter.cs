@@ -181,13 +181,7 @@ namespace Brx.FlatFileMonger
 
          char ch;
          char[] chArray;
-         string str = Convert.ToString(value);
-         if (str is null)
-         {
-            // replace nothing with empty string
-            str = string.Empty;
-         }
-
+         string str = Convert.ToString(value) ?? string.Empty;
          if (str.IndexOf(_quoteChar) >= 0)
          {
             // value contains quote char -> quote + escape

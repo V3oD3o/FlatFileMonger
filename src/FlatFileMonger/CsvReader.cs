@@ -239,8 +239,10 @@ namespace Brx.FlatFileMonger
                var header = new List<string>();
                if (ReadRecord(header))
                {
-                  _columns = new CsvColumnCollection();
-                  _columns.DuplicateColumnMode = _duplicateColumnMode;
+                  _columns = new CsvColumnCollection
+                  {
+                     DuplicateColumnMode = _duplicateColumnMode
+                  };
                   if (!string.IsNullOrEmpty(_predefinedSchema))
                   {
                      // header is overridden 
@@ -257,8 +259,10 @@ namespace Brx.FlatFileMonger
          else if (!string.IsNullOrEmpty(_predefinedSchema))
          {
             // read column names from options
-            _columns = new CsvColumnCollection();
-            _columns.DuplicateColumnMode = _duplicateColumnMode;
+            _columns = new CsvColumnCollection
+            {
+               DuplicateColumnMode = _duplicateColumnMode
+            };
             _columns.Add(_predefinedSchema.Split(Ascii.Pipe));
             return true;
          }

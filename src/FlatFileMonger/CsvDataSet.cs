@@ -126,8 +126,10 @@ namespace Brx.FlatFileMonger
          DataColumn column;
          Type dataType;
          var primaryKey = new List<DataColumn>();
-         var table = new DataTable(name);
-         table.Locale = Locale;
+         var table = new DataTable(name)
+         {
+            Locale = Locale
+         };
 
          foreach (XmlElement columnDef in template.SelectNodes("column"))
          {
@@ -193,8 +195,10 @@ namespace Brx.FlatFileMonger
          }
          else
          {
-            table = new DataTable(name);
-            table.Locale = Locale;
+            table = new DataTable(name)
+            {
+               Locale = Locale
+            };
 
             foreach (ColumnRef info in columns)
             {
@@ -477,8 +481,8 @@ namespace Brx.FlatFileMonger
       private sealed class LocalColumnBinding : ColumnBinding
       {
 
-         private DataColumn _column;
-         private AggregateFunctionEnum _function;
+         private readonly DataColumn _column;
+         private readonly AggregateFunctionEnum _function;
 
          public LocalColumnBinding(DataColumn column, AggregateFunctionEnum function)
          {
@@ -495,9 +499,9 @@ namespace Brx.FlatFileMonger
       private sealed class ChildColumnBinding : ColumnBinding
       {
 
-         private DataColumn _column;
-         private AggregateFunctionEnum _function;
-         private DataRelation _relation;
+         private readonly DataColumn _column;
+         private readonly AggregateFunctionEnum _function;
+         private readonly DataRelation _relation;
 
          public ChildColumnBinding(DataRelation relation, DataColumn column, AggregateFunctionEnum function)
          {
@@ -515,9 +519,9 @@ namespace Brx.FlatFileMonger
       private sealed class ParentColumnBinding : ColumnBinding
       {
 
-         private DataColumn _column;
-         private AggregateFunctionEnum _function;
-         private DataRelation _relation;
+         private readonly DataColumn _column;
+         private readonly AggregateFunctionEnum _function;
+         private readonly DataRelation _relation;
 
          public ParentColumnBinding(DataRelation relation, DataColumn column, AggregateFunctionEnum function)
          {
@@ -922,10 +926,7 @@ namespace Brx.FlatFileMonger
                      if (preprocessor is null || preprocessor.Invoke(table, rec, input.RecordIndex, state))
                      {
                         var row = table.Rows.Add(buffer);
-                        if (postprocessor != null)
-                        {
-                           postprocessor.Invoke(table, row, state);
-                        }
+                        postprocessor?.Invoke(table, row, state);
                      }
                   }
                }
@@ -1192,10 +1193,12 @@ namespace Brx.FlatFileMonger
                mat = parser.Match(names[i]);
                if (mat.Success)
                {
-                  col = new ColumnRef();
-                  col.Function = ParseAggregateFunction(mat.Groups["function"].Value);
-                  col.ColumnName = mat.Groups["column"].Value;
-                  col.ColumnAlias = mat.Groups["alias"].Value;
+                  col = new ColumnRef
+                  {
+                     Function = ParseAggregateFunction(mat.Groups["function"].Value),
+                     ColumnName = mat.Groups["column"].Value,
+                     ColumnAlias = mat.Groups["alias"].Value
+                  };
                   if (allowQualifiedNames)
                   {
                      col.TableName = mat.Groups["qualifier"].Value;

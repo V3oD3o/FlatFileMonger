@@ -5,7 +5,7 @@ namespace Brx.FlatFileMonger
 {
    public class CsvFormatOptions
    {
-      private static string CrLf = Ascii.Cr.ToString() + Ascii.Lf.ToString();
+      private static readonly string CrLf = Ascii.Cr.ToString() + Ascii.Lf.ToString();
 
       public static readonly CsvFormatOptions Default =
          new CsvFormatOptions()
